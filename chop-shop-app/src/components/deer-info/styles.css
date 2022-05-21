@@ -1,0 +1,21 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.deer-info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.deer-input {
+    margin: 5px;
+}
+
+.drop-date-container {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 5px;
+}
