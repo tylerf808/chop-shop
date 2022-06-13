@@ -1,5 +1,11 @@
 import DeerInfo from "./components/deer-info/DeerInfo";
 import DeerOptions from "./components/deer-options/DeerOptions";
+import MeatType from "./components/meat-type/MeatType";
+import Jerky from "./components/jerky/Jerky";
+import Bologna from "./components/bologna/Bologna";
+import HotDogs from "./components/hot-dogs/HotDogs";
+import FreshSausage from "./components/fresh-sausage/FreshSausage";
+import SnackSticks from "./components/snack-sticks/SnackSticks";
 import './index.css'
 
 function App() {
@@ -12,6 +18,12 @@ function App() {
       </header>
       <DeerInfo />
       <DeerOptions />
+      <MeatType />
+      <Jerky />
+      <Bologna />
+      <HotDogs />
+      <SnackSticks />
+      <FreshSausage />
     </div>
   );
 }
