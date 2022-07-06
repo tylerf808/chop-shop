@@ -21,7 +21,6 @@ function App() {
         main: '#809AAF'
       },
     },
-    spacing: 10,
   })
 
   return (

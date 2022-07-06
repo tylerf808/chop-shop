@@ -1,18 +1,29 @@
-import { Container, FormControl, FormLabel } from '@mui/material';
+import { Container, FormControl, FormLabel, Input, Typography } from '@mui/material';
 
 function FreshSausage() {
 
     return (
-        <Container className="fresh-sausage-container">
-                <FormLabel id='sausage-header'>Fresh Sausage</FormLabel>
-                <FormLabel id='breakfast-sausage-FormLabel'>Breakfast Sausage</FormLabel>
-                <FormLabel id='breakfast-sausage-price'>$4.50/lb</FormLabel>
-                <FormLabel id='sweet-sausage-FormLabel'>Sweet Italian Sausage</FormLabel>
-                <FormLabel id='sweet-sausage-price'>$4.50/lb</FormLabel>
-                <FormLabel id='hot-sausage-FormLabel'>Hot Italian Sausage</FormLabel>
-                <FormLabel id='hot-sausage-price'>$4.50/lb</FormLabel>
-                <FormLabel id='smoked-bacon-FormLabel'>Smoked Bacon Burger</FormLabel>
-                <FormLabel id='smoked-baacon-price'>$3.50/lb</FormLabel>
+        <Container className="fresh-sausage-container" sx={{
+            border: 2, borderRadius: 2, display: 'flex',
+            flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', padding: 3, marginBottom: 10
+        }}>
+            <Typography variant='h4' id='sausage-header'>Fresh Sausage</Typography>
+            <FormControl>
+                <Typography variant='body1'>Breakfast Sausage $4.50/lb</Typography>
+                <Input type='number'></Input>
+            </FormControl>
+            <FormControl>
+                <Typography variant='body1'>Sweet Italian Sausage $4.50/lb</Typography>
+                <Input type='number'></Input>
+            </FormControl>
+            <FormControl>
+                <Typography variant='body1'>Hot Italian Sausaage $4.50/lb</Typography>
+                <Input type='number'></Input>
+            </FormControl>
+            <FormControl>
+                <Typography variant='body1'>Smoked Bacon Burger $3.50/lb</Typography>
+                <Input type='number'></Input>
+            </FormControl>
         </Container>
     );
 }

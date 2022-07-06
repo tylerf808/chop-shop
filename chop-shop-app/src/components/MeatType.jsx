@@ -1,42 +1,41 @@
-import { Container, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup } from "@mui/material";
+import { Container, Box, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, Typography } from "@mui/material";
 
 function MeatType() {
 
     return (
-        <Container className="meat-type-container">
-            <FormControl>
-                <FormLabel >Tenderloin/Back Strap</FormLabel>
+        <Container className="meat-type-container" sx={{ border: 2, borderRadius: 2, display: 'flex', 
+        flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
+            <FormControl sx={{ margin: 2 }}>
+                <Typography variant='body1'>Tenderloin/Back Strap</Typography>
                 <Input type='number' name='tenderloin'></Input>
             </FormControl>
-            <FormControl>
-                <FormLabel >Roast</FormLabel>
+            <FormControl sx={{ margin: 2 }}>
+                <Typography variant='body1'>Roast</Typography>
                 <Input type='number' name='roast'></Input>
             </FormControl>
-            <FormControl>
-                <FormLabel >Steak (4 a pack)</FormLabel>
+            <FormControl sx={{ margin: 2 }}>
+                <Typography variant='body1'>Steak (4 a pack)</Typography>
                 <Input type='number' name='steak'></Input>
             </FormControl>
-            <FormControl>
-                <FormLabel htmlFor='fish'>Fish (2 a pack)</FormLabel>
+            <FormControl sx={{ margin: 2 }}>
+                <Typography variant='body1'>Fish (2 a pack)</Typography>
                 <Input type='number' name='fish'></Input>
-            </FormControl>
-            <FormControl>
-                <FormLabel htmlFor='minute'>Minute Steak ($3 per 1lb pack)</FormLabel>
+            </FormControl >
+            <FormControl sx={{ margin: 2 }}>
+                <Typography variant='body1'>Minute Steak ($3 per 1lb pack)</Typography>
                 <Input type='number' name='minute'></Input>
             </FormControl>
-            <FormControl>
-                <FormLabel>Burger (1lb per packs)</FormLabel>
-                <Input type='number'></Input>
-            </FormControl>
-            <FormControl>
-                <RadioGroup
-                    row
-                    name='burgers-extras-radio-buttons-group'
-                >
-                    <FormControlLabel value='plain' control={<Radio />} label='Plain'/>
-                    <FormControlLabel value='pork' control={<Radio />} label='Add Pork ($3.50/lb)'/>
-                    <FormControlLabel value='beef' control={<Radio />} label='Add Beef ($4.50/lb)'/>
-                </RadioGroup>
+            <FormControl sx={{margin: 2}}>
+                <Typography variant="body1">Burgers</Typography>
+                    <Input type='number' ></Input>
+                    <RadioGroup 
+                        row
+                        name='burgers-extras-radio-buttons-group'
+                    >
+                        <FormControlLabel value='plain' control={<Radio />} label='Plain' />
+                        <FormControlLabel value='pork' control={<Radio />} label='Add Pork ($3.50/lb)' />
+                        <FormControlLabel value='beef' control={<Radio />} label='Add Beef ($4.50/lb)' />
+                    </RadioGroup>
             </FormControl>
         </Container>
     );

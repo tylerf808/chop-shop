@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, FormLabel, FormControl, Radio, RadioGroup, FormControlLabel, Input } from '@mui/material';
+import { Container, FormLabel, FormControl, Radio, RadioGroup, FormControlLabel, Input, Typography } from '@mui/material';
 
 function DeerOptions() {
 
@@ -22,14 +22,14 @@ function DeerOptions() {
     }
 
     return (
-        <Container sx={{padding: 3}} className="deer-options-container">
-            <p>Deer - Regular Cut - Vacuum Sealed and Frozen - <b>$85.00</b></p>
+        <Container className="deer-options-container" sx={{ border: 2, borderRadius: 2, display: 'flex', 
+        flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', flexWrap: 'wrap' }}>
             <FormControl sx={{padding: 3}}>
-                <FormLabel htmlFor='debone-num' className='input-FormLabel'>Debone - $12.50 Per Qtr:</FormLabel>
+                <Typography variant='body1' htmlFor='debone-num' className='input-label'>Debone - $12.50 Per Qtr:</Typography>
                 <Input type='number'></Input>
             </FormControl>
             <FormControl sx={{padding: 3}}>
-                <FormLabel id="mount-radio-buttons-group-label">Skin Deer for Mount - $25.00 extra: </FormLabel>
+                <Typography variant='body1' id="mount-radio-buttons-group-label">Skin Deer for Mount - $25.00 extra: </Typography>
                 <RadioGroup
                     row
                     aria-labelledby="mount-radio-buttons-group-label"
@@ -39,7 +39,7 @@ function DeerOptions() {
                 </RadioGroup>
             </FormControl>
             <FormControl sx={{padding: 3}}>
-                <FormLabel name='euro-mount-radio-buttons-group-label'>Save Head for Euro Mount: </FormLabel>
+                <Typography variant='body1' name='euro-mount-radio-buttons-group-label'>Save Head for Euro Mount: </Typography>
                 <RadioGroup
                     row
                     aria-labelledby="mount-radio-buttons-group-label"
