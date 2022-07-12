@@ -6,9 +6,11 @@ import Bologna from "./components/Bologna";
 import HotDogs from "./components/HotDogs";
 import FreshSausage from "./components/FreshSausage";
 import SnackSticks from "./components/SnackSticks";
+import TotalCalculator from "./components/TotalCalculator";
 import { Container } from "@mui/system";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Typography } from "@mui/material";
+import { useState } from "react";
 
 function App() {
 
@@ -23,6 +25,14 @@ function App() {
     },
   })
 
+  const [receipt, changeReceipt] = useState({
+      total: 0,
+  })
+
+  const addItem = (e) => {
+    changeReceipt({total: e.target.value})
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container className="App" maxWidth="lg">
@@ -36,13 +46,14 @@ function App() {
           443-415-4643
         </Typography>
         <DeerInfo />
-        <DeerOptions />
+        <DeerOptions onChange={addItem}/>
         <MeatType />
         <Jerky />
         <Bologna />
         <HotDogs />
         <SnackSticks />
         <FreshSausage />
+        <TotalCalculator total={receipt.total}></TotalCalculator>
       </Container>
     </ThemeProvider>
   );
