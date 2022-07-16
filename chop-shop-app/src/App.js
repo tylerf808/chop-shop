@@ -26,11 +26,67 @@ function App() {
   })
 
   const [receipt, changeReceipt] = useState({
-      total: 0,
+    deerNum: 0,
+    confNum: 0,
+    name: '',
+    PH: 0,
+    dropDate: 0,
+    lbs: 0,
+    buckOrDoe: '',
+    deboneQts: 0,
+    skinForMount: '',
+    packs: {
+      tenderloin: 0,
+      roast: 0,
+      steak: 0,
+      fish: 0,
+      minuteSteak: 0,
+      burgers: {
+        plain: 0,
+        addPork: 0,
+        addBeef: 0
+      }
+    },
+    jerky: 0,
+    pastrami: 0,
+    chipHam: 0,
+    bologna: {
+      pep: 0,
+      pepCheese: 0,
+      sweet: 0,
+      sweetCheese: 0,
+    },
+    HotDogs: {
+      halfSmoke: 0,
+      plain: 0,
+      jalCheese: 0,
+      plainCheese: 0,
+    },
+    snackStick: {
+      pepPlain: 0,
+      pepCheese: 0,
+      honeyPlain: 0,
+      honeyCheese: 0
+    },
+    freshSausage: {
+      break: 0,
+      sweetItal: 0,
+      hotItal: 0,
+      smokeBaconBurg: 0
+    }
+  })
+  const [total, changeTotal] = useState({
+    total: 0,
   })
 
-  const addItem = (e) => {
-    changeReceipt({total: e.target.value})
+  const addToTotal = (e) => {
+    const num = e.target.value;
+    const oldNum = total.total;
+    const newNum = num + oldNum;
+    const newTotal = {
+      total: newNum
+    }
+    changeTotal(newTotal)
   }
 
   return (
@@ -45,15 +101,15 @@ function App() {
         <Typography variant="h4">
           443-415-4643
         </Typography>
-        <DeerInfo />
-        <DeerOptions onChange={addItem}/>
+        <DeerInfo onChange={addToTotal} />
+        <DeerOptions onChange={addToTotal} />
         <MeatType />
         <Jerky />
         <Bologna />
         <HotDogs />
         <SnackSticks />
         <FreshSausage />
-        <TotalCalculator total={receipt.total}></TotalCalculator>
+        <TotalCalculator total={total.total}></TotalCalculator>
       </Container>
     </ThemeProvider>
   );

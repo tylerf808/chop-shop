@@ -5,15 +5,14 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { Input, Typography } from '@mui/material';
 
-function DeerInfo() {
+function DeerInfo({onChange}) {
 
     return (
         <Container className="deer-info-container" sx={{ border: 2, borderRadius: 2, display: 'flex', 
         flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', flexWrap: 'wrap' }}>
-        
             <FormControl sx={{margin: 3}}>
                 <Typography variant='body1'>Deer #:</Typography>
-                <Input type='number'></Input>
+                <Input onChange={onChange} id='test' type='number'></Input>
             </FormControl>
             <FormControl sx={{margin: 3}}>
                 <Typography variant='body1'>Conf #:</Typography>
@@ -25,7 +24,7 @@ function DeerInfo() {
             </FormControl>
             <FormControl sx={{margin: 3}}>
                 <Typography variant='body1'>PH:</Typography>
-                <Input type='number'></Input>
+                <Input type='tel'></Input>
             </FormControl>
             <FormControl sx={{margin: 3}}>
                 <Typography variant='body1'>Drop off Date:</Typography>
