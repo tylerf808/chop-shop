@@ -11,6 +11,7 @@ import { Container } from "@mui/system";
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import { Button, Typography } from "@mui/material";
 import { useState, createContext, useMemo } from "react";
+import { ReactDOM } from "react";
 
 function App() {
 
@@ -20,9 +21,7 @@ function App() {
     }
   })
 
-  const [receipt, changeReceipt] = useState([{
-    subTotal: 0,
-  }])
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -44,7 +43,7 @@ function App() {
         <HotDogs />
         <SnackSticks />
         <FreshSausage />
-        {receipt.subTotal}
+        
       </Container>
     </ThemeProvider>
   );
