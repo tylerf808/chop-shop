@@ -3,28 +3,10 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import { Button, Input, Typography } from '@mui/material';
-import { useState } from 'react';
-import findDOMnode from 'react-dom'
+import { Input, Typography } from '@mui/material';
 
 function DeerInfo(props) {
-    const [receipt, changeReceipt] = useState([])
-
-    const updateReceipt = () => {
-        const inputs = document.getElementsByTagName('Input')
-        const newReceipt = []
-        for(let i = 0; i < inputs.length; i++){
-            const item = inputs[i].id
-            const value = inputs[i].value
-            const newItem = {
-                item: item,
-                value: value
-            }
-            newReceipt.push(newItem)
-        }
-        changeReceipt(newReceipt)
-        console.log(receipt)
-    }
+    
 
     return (
         <Container className="deer-info-container" sx={{
@@ -33,35 +15,35 @@ function DeerInfo(props) {
         }}>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Deer #:</Typography>
-                <Input id='deer-num' type='number'></Input>
+                <Input name="0" id='Deer Number' type='number'></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Conf #:</Typography>
-                <Input id='conf-num' min={0} type='number'></Input>
+                <Input name="0" id='Confirmation Number' min={0} type='number'></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Name</Typography>
-                <Input id='name' type='text'></Input>
+                <Input name="0" id='Name' type='text'></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>PH:</Typography>
-                <Input type='tel'></Input>
+                <Input name="0" id='Telephone Number' type='tel'></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Drop off Date:</Typography>
-                <Input type='date'></Input>
+                <Input name="0" id='Drop Off Date' type='date'></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Lbs of Meat:</Typography>
-                <Input type='number'></Input>
+                <Input name="0" id='Lbs of Meat' type='number'></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
                 <RadioGroup row >
-                    <FormControlLabel value="buck" control={<Radio />} label="Buck" />
-                    <FormControlLabel value="doe" control={<Radio />} label="Doe" />
+                    <FormControlLabel value="buck" control={<Radio name="0" id='Buck'/>} label="Buck" />
+                    <FormControlLabel value="doe" control={<Radio name="0" id='Doe'/>} label="Doe" />
                 </RadioGroup>
             </FormControl>
-            <Button variant="contained" color="success" onClick={updateReceipt}>Update Total</Button>
+            
         </Container >
     );
 }

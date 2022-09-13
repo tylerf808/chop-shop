@@ -1,4 +1,4 @@
-import { Container, FormControl, FormLabel, Input, Typography } from '@mui/material';
+import { Container, FormControl, Input, Typography } from '@mui/material';
 
 function FreshSausage() {
 
@@ -10,19 +10,19 @@ function FreshSausage() {
             <Typography variant='h5' id='sausage-header'>Fresh Sausage</Typography>
             <FormControl>
                 <Typography variant='body1'>Breakfast Sausage $4.50/lb</Typography>
-                <Input type='number'></Input>
+                <Input name='4.5' id='Breakfast Sausage' type='number'></Input>
             </FormControl>
             <FormControl>
                 <Typography variant='body1'>Sweet Italian Sausage $4.50/lb</Typography>
-                <Input type='number'></Input>
+                <Input name='4.5' id='Sweet Italian Sausage' type='number'></Input>
             </FormControl>
             <FormControl>
-                <Typography variant='body1'>Hot Italian Sausaage $4.50/lb</Typography>
-                <Input type='number'></Input>
+                <Typography variant='body1'>Hot Italian Sausage $4.50/lb</Typography>
+                <Input name='4.5' id='Hot Italian Sausage' type='number'></Input>
             </FormControl>
             <FormControl>
                 <Typography variant='body1'>Smoked Bacon Burger $3.50/lb</Typography>
-                <Input type='number'></Input>
+                <Input name='3.5' id='' type='number'></Input>
             </FormControl>
         </Container>
     );

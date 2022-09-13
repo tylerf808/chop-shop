@@ -1,4 +1,4 @@
-import { Container, FormControl, FormLabel, Input, Typography } from "@mui/material";
+import { Container, FormControl, Input, Typography } from "@mui/material";
 
 
 function Jerky() {
@@ -9,17 +9,17 @@ function Jerky() {
             <FormControl sx={{ margin: 2}}>
                 <Typography variant="h5" >Jerky</Typography>
                 <Typography variant="body1" htmlFor='jerky'>$15.00 lb</Typography>
-                <Input type='number' name='jerky'></Input>
+                <Input type='number' name="15" id="Jerky"></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant="h5">Pastrami</Typography>
                 <Typography variant='body1' htmlFor='pastrami'>$7.50 lb</Typography>
-                <Input type='number' name='pastrami'></Input>
+                <Input type='number' id='Pastrami' name='7.5'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant="h5">Chipped/Cured Ham</Typography>
                 <Typography variant='body1' htmlFor='chipped'>$25.00 lb</Typography>
-                <Input type='number' name='chipped'></Input>
+                <Input type='number' id="Chipped/Cured Ham" name='25'></Input>
             </FormControl>
         </Container>
     );
