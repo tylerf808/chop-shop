@@ -12,15 +12,15 @@ function DeerOptions() {
             <FormControl sx={{padding: 3}}>
                 <Typography variant='body1' id="mount-radio-buttons-group-label">Skin Deer for Mount - $25.00 extra: </Typography>
                 <RadioGroup row aria-labelledby="mount-radio-buttons-group-label" >
-                    <FormControlLabel value="yes" control={<Radio name='25' id='Skin Deer for Mount'/>} label="Yes" />
-                    <FormControlLabel value="no" control={<Radio name="0" id="Don't Skin Deer for Mount no"/>} label="No" />
+                    <FormControlLabel value="Yes" control={<Radio name='custInfo' id='Skin Deer for Mount'/>} label="Yes" />
+                    <FormControlLabel value="No" control={<Radio name="custInfo" id="Don't Skin Deer for Mount"/>} label="No" />
                 </RadioGroup>
             </FormControl>
             <FormControl sx={{padding: 3}}>
                 <Typography variant='body1' name='euro-mount-radio-buttons-group-label'>Save Head for Euro Mount: </Typography>
                 <RadioGroup row aria-labelledby="mount-radio-buttons-group-label">
-                    <FormControlLabel value="yes" control={<Radio name="0" id='Save Head for Euro Mount'/>} label="Yes" />
-                    <FormControlLabel value="no" control={<Radio name="0" id='Do Not Save Head for Euro Mount'/>} label="No" />
+                    <FormControlLabel value="Yes" control={<Radio name="custInfo" id='Save Head for Euro Mount'/>} label="Yes" />
+                    <FormControlLabel value="No" control={<Radio name="custInfo" id='Do Not Save Head for Euro Mount'/>} label="No" />
                 </RadioGroup>
             </FormControl>
         </Container>
