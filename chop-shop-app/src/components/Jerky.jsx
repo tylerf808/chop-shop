@@ -9,17 +9,17 @@ function Jerky() {
             <FormControl sx={{ margin: 2}}>
                 <Typography variant="h5" >Jerky</Typography>
                 <Typography variant="body1" htmlFor='jerky'>$15.00 lb</Typography>
-                <Input type='number' name="15" id="Jerky"></Input>
+                <Input className='item-inputs' type='number' name="Jerky" id="15"></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant="h5">Pastrami</Typography>
                 <Typography variant='body1' htmlFor='pastrami'>$7.50 lb</Typography>
-                <Input type='number' id='Pastrami' name='7.5'></Input>
+                <Input className='item-inputs' type='number' id='7.50' name='Pastrami'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant="h5">Chipped/Cured Ham</Typography>
                 <Typography variant='body1' htmlFor='chipped'>$25.00 lb</Typography>
-                <Input type='number' id="Chipped/Cured Ham" name='25'></Input>
+                <Input className='item-inputs' type='number' id="25" name='Chipped/Cured Ham'></Input>
             </FormControl>
         </Container>
     );

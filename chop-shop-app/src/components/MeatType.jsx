@@ -8,31 +8,31 @@ function MeatType() {
             <Typography variant='h5' sx={{}}>Packs</Typography>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Tenderloin/Back Strap</Typography>
-                <Input type='number' id='Tenderloin/Back Strap' name="0"></Input>
+                <Input className='item-inputs' type='number' id='5' name="Tenderloin/Back Strap"></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Roast</Typography>
-                <Input type='number' id='Roast' name="0"></Input>
+                <Input className='item-inputs' type='number' id='5' name="Roast"></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Steak</Typography>
-                <Input type='number' id='Steak' name="0"></Input>
+                <Input className='item-inputs' type='number' id='6' name="Steak"></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Fish</Typography>
-                <Input type='number' id='Fish' name="0"></Input>
+                <Input className='item-inputs' type='number' id='3' name="Fish"></Input>
             </FormControl >
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Minute Steak</Typography>
-                <Input type='number' id='Minute Steak' name="3"></Input>
+                <Input className='item-inputs' type='number' id='3' name="Minute Steak"></Input>
             </FormControl>
             <FormControl sx={{margin: 3}}>
                 <Typography variant="body1">Burgers</Typography>
-                    <Input id="Burgers" type='number' name="0"></Input>
+                    <Input className='item-inputs' id="2" type='number' name="Burgers"></Input>
                     <RadioGroup row id='burgers-extras-radio-buttons-group'>
-                        <FormControlLabel value='plain' control={<Radio id="Plain" name="0"/>} label='Plain' />
-                        <FormControlLabel value='pork' control={<Radio id="Add Pork" name="3.5"/>} label='Add Pork ($3.50/lb)' />
-                        <FormControlLabel value='beef' control={<Radio id="Add Beef" name="4.5"/>} label='Add Beef ($4.50/lb)' />
+                        <FormControlLabel value='plain' control={<Radio id="0" name="Plain"/>} label='Plain' />
+                        <FormControlLabel value='pork' control={<Radio id="3.50" name="Add Pork"/>} label='Add Pork ($3.50/lb)' />
+                        <FormControlLabel value='beef' control={<Radio id="4.50" name="Add Beef"/>} label='Add Beef ($4.50/lb)' />
                     </RadioGroup>
             </FormControl>
         </Container>

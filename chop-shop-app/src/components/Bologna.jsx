@@ -9,20 +9,20 @@ function Bologna() {
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='pepper-bologna'>Pepper Bologna (~3 lbs)</Typography>
                 <Typography variant='body1' id='pepper-plain-price'>$11.00 each</Typography>
-                <Input name='11' type='number' id='Pepper Bologna Plain'></Input>
+                <Input className='item-inputs' name='Pepper Bologna Plain' type='number' id='11'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='pepper-cheese-price'>$14.00 each</Typography>
-                <Input name='14' type='number' id='Pepper Bologna Cheese'></Input>
+                <Input className='item-inputs' name='Pepper Bologna Cheese' type='number' id='14'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='sweet-bologna'>Sweet Bologna (~3 lbs)</Typography>
                 <Typography variant='body1' id='sweet-plain-price'>$11.00 each</Typography>
-                <Input name='11' type='number' id='Sweet Bologna Plain'></Input>
+                <Input className='item-inputs' name='Sweet Bologna Plain' type='number' id='11'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='sweet-cheese-price'>$14.00 each</Typography>
-                <Input name='14' type='number' id='Sweet Bologna Cheese'></Input>
+                <Input className='item-inputs' name='Sweet Bologna Cheese' type='number' id='14'></Input>
             </FormControl>
         </Container >
     );

@@ -8,16 +8,16 @@ function SnackSticks() {
             <FormGroup sx={{margin: 2}}>
                 <Typography variant='h6'>Pepper Sticks</Typography>
                 <Typography variant="body1">Plain $6.00/lb</Typography>
-                <Input id="Pepper Sticks Plain" name='6' type="number"></Input>
+                <Input className='item-inputs' id="6" name='Pepper Sticks Plain' type="number"></Input>
                 <Typography variant="body1">w/ Cheese $7.00/lb</Typography>
-                <Input id="Pepper Sticks w/ Cheese" name="7" type="number"></Input>
+                <Input className='item-inputs' id="7" name="Pepper Sticks with Cheese" type="number"></Input>
             </FormGroup>
             <FormGroup sx={{margin: 2}}>
             <Typography variant='h6'>Honey Sticks</Typography>
                 <Typography variant="body1">Plain $6.00/lb</Typography>
-                <Input id="Honey Sticks Plain" name="6" type="number"></Input>
+                <Input className='item-inputs' id="6" name="Honey Sticks Plain" type="number"></Input>
                 <Typography variant="body1">w/ Cheese $7.00/lb</Typography>
-                <Input id="Honey Sticks w/ Cheese" mame="7" type="number"></Input>
+                <Input className='item-inputs' id="7" name="Honey Sticks with Cheese" type="number"></Input>
             </FormGroup>
         </Container>
     );

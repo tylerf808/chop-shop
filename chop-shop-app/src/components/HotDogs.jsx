@@ -9,22 +9,22 @@ function HotDogs() {
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='jalopeno-Typography'>Half Smokes</Typography>
                 <Typography variant='body1' id='half-smokes-price'>$5.50/pack of 4</Typography>
-                <Input name="5.5" id='Half Smoked Hot Dogs' type='number'></Input>
+                <Input className='item-inputs' name="Half Smoked Hot Dogs" id='5.50' type='number'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='plain-Typography'>Plain</Typography>
                 <Typography variant='body1' id='plain-price'>$5.50/pack of 4</Typography>
-                <Input name="5.5" id='Plain Hot Dogs' type='number'></Input>
+                <Input className='item-inputs' name="'Plain Hot Dogs" id='5.50' type='number'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='jalopeno-Typography'>Jalopeno w/ Cheese</Typography>
                 <Typography variant='body1' id='jalopeno-price'>$6.00/pack of 4</Typography>
-                <Input name="6" id='Jalapeno Hot Dogs' type='number'></Input>
+                <Input className='item-inputs' name="Jalapeno Hot Dogs" id='6' type='number'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='plain-cheese-Typography'>Plain w/ Cheese</Typography>
                 <Typography variant='body1' id='plain-cheese-price'>$6.00/pack of 4</Typography>
-                <Input name="6" id='Plain Cheese Dogs' type='number'></Input>
+                <Input className='item-inputs' name="Plain Cheese Dogs" id='6' type='number'></Input>
             </FormControl>
         </Container >
     );
