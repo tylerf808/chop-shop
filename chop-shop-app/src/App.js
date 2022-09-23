@@ -6,20 +6,31 @@ import Bologna from "./components/Bologna";
 import HotDogs from "./components/HotDogs";
 import FreshSausage from "./components/FreshSausage";
 import SnackSticks from "./components/SnackSticks";
+import PDFDownload from "./components/PDFDownload";
 import { Container } from "@mui/system";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Box, Button, Card, inputBaseClasses, Typography } from "@mui/material";
-import { useState, useRef, useEffect } from "react";
+import { Box, Button, Typography } from "@mui/material";
+import { useState, } from "react";
+import CurrencyFormat from 'react-currency-format';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 function App() {
 
+  //Create theme for the page
   const theme = createTheme({
     palette: {
       mode: 'light'
     }
   })
 
+  //Instantiate date obj to insert date into pdf download file name
+  const newDate = new Date()
+  const date = newDate.getDate();
+  const month = newDate.getMonth() + 1;
+  const year = newDate.getFullYear();
+
+  //Create different states to hold customer and receipt info
   const [receipt, changeReceipt] = useState([])
   const [showReceipt, setShowReceipt] = useState(false)
   const [custInfo, setCustInfo] = useState([])
@@ -27,13 +38,25 @@ function App() {
   const [skinDeerForMount, setSkinDeerForMount] = useState('')
   const [buckOrDoe, setBuckOrDoe] = useState('')
   const [total, setTotal] = useState(0)
+ const [showDownload, setShowDownload] = useState(false)
 
+  const changeShowDownload = () => {
+    if(showDownload === false){
+      setShowDownload(true)
+      return
+    }
+    setShowDownload(false)
+  }
+
+  //Function that runs when user clicks the button to generate a receipt. Alters customer and receipt states.
   const updateReceipt = () => {
 
+    //Take in all inputs from the page and create customer info array and receipt array to hold the new values
     const inputs = document.getElementsByClassName('MuiInput-input')
     const custInfoArray = []
     const newReceipt = []
 
+    //Loops through all the inputs, checks if they're empty, and pushes them in the appropriate array.
     for (let i = 0; i < inputs.length; i++) {
 
       if (inputs[i].id === 'customer-info') {
@@ -61,13 +84,11 @@ function App() {
       value: saveHeadForEuro,
       key: 101
     }
-
     const skinForMountInfo = {
       name: 'Skin Deer for Mount',
       value: skinDeerForMount,
       key: 102
     }
-
     const buckOrDoeInfo = {
       name: 'Buck or Doe',
       value: buckOrDoe,
@@ -80,12 +101,18 @@ function App() {
     changeReceipt(newReceipt)
     setCustInfo(custInfoArray)
 
+    //Also calculate total and change total state
     let newTotal = 0
-
     for (let i = 0; i < newReceipt.length; i++) {
       newTotal = newTotal + newReceipt[i].price
     }
-    setTotal(newTotal)
+    setTotal(newTotal.toFixed(2))
+
+    if(showDownload === true){
+      changeShowDownload()
+    }
+
+    //Shows the receipt
     setShowReceipt(true)
   }
 
@@ -107,18 +134,17 @@ function App() {
           <Button sx={{ margin: 3 }} variant="contained" color="success" onClick={updateReceipt}>Create Receipt</Button>
         </Container>
         <Container id='receipt-container'>
-        
           {showReceipt ?
-          <Container>
-            <Typography variant="h5">Customer Info</Typography>
-            <Box sx={{ border: 2, backgroundColor: '#6F777D', display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-              {custInfo.map((item) => (
-                <Typography sx={{ margin: 3, color: 'white' }} key={item.key}>{item.name}: {item.value}</Typography>
-              ))}
-            </Box>
+            <Container>
+              <Typography variant="h5">Customer Info</Typography>
+              <Box sx={{ border: 2, backgroundColor: '#6F777D', display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+                {custInfo.map((item) => (
+                  <Typography sx={{ margin: 3, color: 'white' }} key={item.key}>{item.name}: {item.value}
+                  </Typography>
+                ))}
+              </Box>
             </Container>
             : null}
-          
           {showReceipt ? <Container>
             <Typography variant="h5">Itemized Receipt</Typography>
             <TableContainer component={Paper} >
@@ -135,15 +161,17 @@ function App() {
                     <TableRow key={item.key} sx={{ border: 0 }}>
                       <TableCell component="th" scope="row"> {item.name} </TableCell>
                       <TableCell align="right">{item.value}</TableCell>
-                      <TableCell align="right">${item.price}</TableCell>
+                      <TableCell align="right"><CurrencyFormat fixedDecimalScale={true} decimalScale={2} value={item.price} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer>
             <Box sx={{ margin: 3, display: 'flex', justifyContent: 'flex-end' }}>
-              <Typography variant='h5'>Total: ${total}</Typography>
+              <Typography variant='h5'>Total: <CurrencyFormat value={total} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Typography>
             </Box>
+            <Button onClick={changeShowDownload}>Create PDF</Button>
+            {showDownload ? <PDFDownloadLink style={{ padding: 6}} document={<PDFDownload items={receipt} custInfo={custInfo}/>} fileName={custInfo[2].value + '_' + month + '-' + date + '-' + year + '.pdf'}>💾</PDFDownloadLink> : null}
           </Container> : null}
         </Container>
       </Container>

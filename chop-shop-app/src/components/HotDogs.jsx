@@ -14,7 +14,7 @@ function HotDogs() {
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='plain-Typography'>Plain</Typography>
                 <Typography variant='body1' id='plain-price'>$5.50/pack of 4</Typography>
-                <Input className='item-inputs' name="'Plain Hot Dogs" id='5.50' type='number'></Input>
+                <Input className='item-inputs' name="Plain Hot Dogs" id='5.50' type='number'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='jalopeno-Typography'>Jalopeno w/ Cheese</Typography>
