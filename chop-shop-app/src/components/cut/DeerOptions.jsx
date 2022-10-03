@@ -3,7 +3,7 @@ import { Container, FormControl, Radio, RadioGroup, FormControlLabel, Input, Typ
 function DeerOptions({setSaveHeadForEuro, setSkinDeerForMount}) {
 
     return (
-        <Container className="deer-options-container" sx={{ border: 2, borderRadius: 2, display: 'flex', 
+        <Container className="deer-options-container" sx={{ borderTop: 1, borderWidth: 2, display: 'flex', 
         flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', flexWrap: 'wrap' }}>
             <FormControl sx={{padding: 3}}>
                 <Typography variant='body1' htmlFor='debone-num' className='input-label'>Debone - $12.50 Per Qtr:</Typography>

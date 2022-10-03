@@ -9,7 +9,7 @@ function DeerInfo({setBuckOrDoe}) {
 
     return (
         <Container className="deer-info-container" sx={{
-            border: 2, borderRadius: 2, display: 'flex',
+             display: 'flex',
             flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', flexWrap: 'wrap'
         }}>
             <FormControl sx={{ margin: 3 }}>

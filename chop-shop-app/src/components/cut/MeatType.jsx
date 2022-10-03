@@ -1,11 +1,10 @@
 import { Container, FormControl, FormControlLabel, Input, Radio, RadioGroup, Typography } from "@mui/material";
 
-function MeatType() {
-
+function MeatType({changeBurgerType}) {
+    
     return (
-        <Container className="meat-type-container" sx={{ border: 2, borderRadius: 2, display: 'flex', 
+        <Container className="meat-type-container" sx={{borderTop: 1, borderWidth: 2, display: 'flex', 
         flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-            <Typography variant='h5' sx={{}}>Packs</Typography>
             <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Tenderloin/Back Strap</Typography>
                 <Input className='item-inputs' type='number' id='5' name="Tenderloin/Back Strap"></Input>
@@ -30,9 +29,9 @@ function MeatType() {
                 <Typography variant="body1">Burgers</Typography>
                     <Input className='item-inputs' id="2" type='number' name="Burgers"></Input>
                     <RadioGroup row id='burgers-extras-radio-buttons-group'>
-                        <FormControlLabel value='plain' control={<Radio id="0" name="Plain"/>} label='Plain' />
-                        <FormControlLabel value='pork' control={<Radio id="3.50" name="Add Pork"/>} label='Add Pork ($3.50/lb)' />
-                        <FormControlLabel value='beef' control={<Radio id="4.50" name="Add Beef"/>} label='Add Beef ($4.50/lb)' />
+                        <FormControlLabel onClick={() => changeBurgerType('plain')} value='plain' control={<Radio />} label='Plain' />
+                        <FormControlLabel onClick={() => changeBurgerType('pork')} value='pork' control={<Radio />} label='Add Pork ($3.50/lb)' />
+                        <FormControlLabel onClick={() => changeBurgerType('beef')} value='beef' control={<Radio />} label='Add Beef ($4.50/lb)' />
                     </RadioGroup>
             </FormControl>
         </Container>
