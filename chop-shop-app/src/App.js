@@ -7,9 +7,9 @@ import HotDogs from "./components/extras/HotDogs";
 import FreshSausage from "./components/extras/FreshSausage";
 import SnackSticks from "./components/extras/SnackSticks";
 import PDFDownload from "./components/PDFDownload";
-import { useState, } from "react";
+import { useState } from "react";
 import CurrencyFormat from 'react-currency-format';
-import { ThemeProvider, Input, createTheme, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Button, Typography, Container } from '@mui/material'
+import { ThemeProvider, createTheme, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Button, Typography, Container } from '@mui/material'
 import { PDFDownloadLink } from '@react-pdf/renderer';
 
 function App() {
@@ -32,29 +32,25 @@ function App() {
   const year = newDate.getFullYear()
   const timestamp = epoch(newDate)
 
+  let pricesFromJSON
+  fetch('/prices.json', {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+    .then((response) => response.json()).then((data) => pricesFromJSON = data)
 
   //Create different states to hold customer and receipt info
   const [receipt, changeReceipt] = useState([])
   const [showReceipt, setShowReceipt] = useState(false)
-  const [showPrices, setShowPrices] = useState(false)
   const [custInfo, setCustInfo] = useState([])
   const [saveHeadForEuro, setSaveHeadForEuro] = useState('')
   const [skinDeerForMount, setSkinDeerForMount] = useState('')
   const [buckOrDoe, setBuckOrDoe] = useState('')
   const [burgerType, setBurgerType] = useState('')
+  const [backstrapType, setBackstrapType] = useState('')
   const [total, setTotal] = useState(0)
-  const [prices, setPrices] = useState({ jerky: '3', pastrami: '4', ham: '5' })
-
-  //Function to display change prices page
-  const changePrices = () => {
-    setShowPrices(true)
-  }
-
-  const confirmPriceChange = () => {
-
-    setShowPrices(false)
-    setShowReceipt(false)
-  }
 
   //Function that runs when user clicks the button to generate a receipt. Alters customer and receipt states.
   const updateReceipt = () => {
@@ -84,8 +80,8 @@ function App() {
             burgerObj = {
               name: 'Plain Burger',
               value: inputs[i].value,
-              itemPrice: inputs[i].id,
-              price: inputs[i].value * inputs[i].id,
+              itemPrice: pricesFromJSON["plain-burger"],
+              price: inputs[i].value * pricesFromJSON["plain-burger"],
               key: i
             }
             newReceipt.push(burgerObj)
@@ -94,8 +90,8 @@ function App() {
             burgerObj = {
               name: 'Pork Burger',
               value: inputs[i].value,
-              itemPrice: inputs[i].id,
-              price: inputs[i].value * 3.5,
+              itemPrice: pricesFromJSON["pork-burger"],
+              price: inputs[i].value * pricesFromJSON["pork-burger"],
               key: i
             }
             newReceipt.push(burgerObj)
@@ -104,19 +100,53 @@ function App() {
             burgerObj = {
               name: 'Beef Burger',
               value: inputs[i].value,
-              itemPrice: inputs[i].id,
-              price: inputs[i].value * 4.5,
+              itemPrice: pricesFromJSON["beef-burger"],
+              price: inputs[i].value * pricesFromJSON["beef-burger"],
               key: i
             }
             newReceipt.push(burgerObj)
+            break;
+        }
+      } else if (inputs[i].name === "Tenderloin/Backstrap") {
+        let backstrapObj
+        switch (backstrapType) {
+          case 'whole':
+            backstrapObj = {
+              name: 'Tenderloin/Backstrap Whole',
+              value: inputs[i].value,
+              itemPrice: pricesFromJSON["backstrap"],
+              price: inputs[i].value * pricesFromJSON["backstrap"],
+              key: i
+            }
+            newReceipt.push(backstrapObj)
+            break;
+          case '3-chunk':
+            backstrapObj = {
+              name: 'Tenderloin/Backstrap 3-Chunk',
+              value: inputs[i].value,
+              itemPrice: pricesFromJSON["backstrap"],
+              price: inputs[i].value * pricesFromJSON["backstrap"],
+              key: i
+            }
+            newReceipt.push(backstrapObj)
+            break;
+          case 'butterfly':
+            backstrapObj = {
+              name: 'Tenderloin/Backstrap Butterfly',
+              value: inputs[i].value,
+              itemPrice: pricesFromJSON["backstrap"],
+              price: inputs[i].value * pricesFromJSON["backstrap"],
+              key: i
+            }
+            newReceipt.push(backstrapObj)
             break;
         }
       } else {
         const newItem = {
           name: inputs[i].name,
           value: inputs[i].value,
-          itemPrice: inputs[i].id,
-          price: inputs[i].value * inputs[i].id,
+          itemPrice: pricesFromJSON[inputs[i].id],
+          price: inputs[i].value * pricesFromJSON[inputs[i].id],
           key: i
         }
         newReceipt.push(newItem)
@@ -159,26 +189,19 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container className="App" maxWidth="lg" >
-        <Typography sx={{ margin: 2 }} variant="h2" >
+      <Container className="App" maxWidth="xl" sx={{display: 'flex', flexDirection: 'column'}}>
+        <Typography sx={{ margin: 2, alignSelf: 'center' }} variant="h2" >
           The Chop Shop
         </Typography>
-        <Button onClick={changePrices}>Change Prices</Button>
-        {showPrices ? <Container>
-          <Typography>Change Jerky Price</Typography><Input className="price-change-input" type="number" id="jerkyInput"></Input>
-          <Typography>Change Pastrami Price</Typography><Input className="price-change-input" type="number" id="pastramiInput"></Input>
-          <Typography>Change Ham Price</Typography><Input className="price-change-input" type="number" id="hamInput"></Input>
-          <Button onClick={confirmPriceChange}>Confirm price change</Button>
-        </Container> : null}
-        <Container sx={{ border: 'solid', borderWidth: 2, borderRadius: 3}}>
+        <Container sx={{ border: 'solid', borderWidth: 2, borderRadius: 3 }}>
           <Typography variant="h4" sx={{ margin: 2 }}>Cut</Typography>
           <DeerInfo setBuckOrDoe={setBuckOrDoe} />
           <DeerOptions setSaveHeadForEuro={setSaveHeadForEuro} setSkinDeerForMount={setSkinDeerForMount} />
-          <MeatType changeBurgerType={setBurgerType} />
+          <MeatType changeBurgerType={setBurgerType} changeBackstrap={setBackstrapType} />
         </Container>
-        <Container sx={{ border: 'solid', borderWidth: 2, borderRadius: 3}}>
+        <Container sx={{ border: 'solid', borderWidth: 2, borderRadius: 3 }}>
           <Typography variant="h4" sx={{ margin: 2 }}>Extras</Typography>
-          <Jerky jerkyPrice={prices.jerky} pastramiPrice={prices.pastrami} hamPrice={prices.ham} />
+          <Jerky />
           <Bologna />
           <HotDogs />
           <SnackSticks />
@@ -201,10 +224,10 @@ function App() {
           {showReceipt ? <Container>
             <Typography variant="h5">Itemized Receipt</Typography>
             <TableContainer component={Paper} >
-              <Table >
+              <Table autoFocus >
                 <TableHead sx={{ backgroundColor: '#6F777D', border: 2 }}>
                   <TableRow>
-                    <TableCell sx={{ color: 'white' }} align='left'>Item</TableCell>
+                    <TableCell foc sx={{ color: 'white' }} align='left'>Item</TableCell>
                     <TableCell sx={{ color: 'white' }} align="right">Quantity</TableCell>
                     <TableCell sx={{ color: 'white' }} align="right">Price</TableCell>
                     <TableCell sx={{ color: 'white ' }} align='right'>Subtotal</TableCell>

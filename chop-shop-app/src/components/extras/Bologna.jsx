@@ -8,22 +8,22 @@ function Bologna() {
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='pepper-bologna'>Pepper Bologna </Typography>
                 <Typography variant='body1' id='pepper-plain-price'>$11.00 each</Typography>
-                <Input className='item-inputs' name='Pepper Bologna Plain' type='number' id='pepper-bologna-plain'></Input>
+                <Input className='item-inputs' name='Pepper Bologna Plain' id='pepper-bologna-plain'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
             <Typography variant='body1' id='pepper-bologna'>Pepper Bologna w/ cheese</Typography>
                 <Typography variant='body1' id='pepper-cheese-price'>$14.00 each</Typography>
-                <Input className='item-inputs' name='Pepper Bologna Cheese' type='number' id='pepper-bologna-cheese'></Input>
+                <Input className='item-inputs' name='Pepper Bologna Cheese' id='pepper-bologna-cheese'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
                 <Typography variant='body1' id='sweet-bologna'>Sweet Bologna </Typography>
                 <Typography variant='body1' id='sweet-plain-price'>$11.00 each</Typography>
-                <Input className='item-inputs' name='Sweet Bologna Plain' type='number' id='sweet-bologna-plain'></Input>
+                <Input className='item-inputs' name='Sweet Bologna Plain' id='sweet-bologna-plain'></Input>
             </FormControl>
             <FormControl sx={{ margin: 2}}>
             <Typography variant='body1' id='sweet-bologna'>Sweet Bologna w/ cheese</Typography>
                 <Typography variant='body1' id='sweet-cheese-price'>$14.00 each</Typography>
-                <Input className='item-inputs' name='Sweet Bologna Cheese' type='number' id='sweet-bologna-cheese'></Input>
+                <Input className='item-inputs' name='Sweet Bologna Cheese' id='sweet-bologna-cheese'></Input>
             </FormControl>
         </Container >
     );
