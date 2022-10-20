@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/chop-shop/static/css/main.69a21974.css",
-    "main.js": "/chop-shop/static/js/main.67602eb7.js",
+    "main.css": "/chop-shop/static/css/main.eaf5343f.css",
+    "main.js": "/chop-shop/static/js/main.c9a91e75.js",
     "index.html": "/chop-shop/index.html",
-    "main.69a21974.css.map": "/chop-shop/static/css/main.69a21974.css.map",
-    "main.67602eb7.js.map": "/chop-shop/static/js/main.67602eb7.js.map"
+    "main.eaf5343f.css.map": "/chop-shop/static/css/main.eaf5343f.css.map",
+    "main.c9a91e75.js.map": "/chop-shop/static/js/main.c9a91e75.js.map"
   },
   "entrypoints": [
-    "static/css/main.69a21974.css",
-    "static/js/main.67602eb7.js"
+    "static/css/main.eaf5343f.css",
+    "static/js/main.c9a91e75.js"
   ]
 }
