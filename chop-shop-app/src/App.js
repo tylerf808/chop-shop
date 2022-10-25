@@ -7,7 +7,7 @@ import HotDogs from "./components/extras/HotDogs";
 import FreshSausage from "./components/extras/FreshSausage";
 import SnackSticks from "./components/extras/SnackSticks";
 import PDFDownload from "./components/PDFDownload";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CurrencyFormat from 'react-currency-format';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Button, Typography, Container } from '@mui/material'
 import { PDFDownloadLink } from '@react-pdf/renderer';
@@ -49,11 +49,12 @@ function App() {
   //Function that runs when user clicks the button to generate a receipt. Alters customer and receipt states.
   const updateReceipt = () => {
 
-    //Take in all inputs from the page and create customer info array and receipt array to hold the new values
-    const inputs = document.getElementsByClassName('MuiInput-input')
     const custInfoArray = []
     const newReceipt = []
     const newTbdItems = []
+
+    //Take in all inputs from the page and create customer info array and receipt array to hold the new values
+    const inputs = document.getElementsByClassName('MuiInput-input')
 
     //Add overall cut obj to receipt array
     const overallCut = {
@@ -62,16 +63,6 @@ function App() {
       price: parseFloat(pricesFromJSON['regular-cut']),
     }
     newReceipt.push(overallCut)
-
-    //If they want to skin add the fee as an item
-    if (skinDeerForMount) {
-      const skinDeerItem = {
-        name: "Skin for Mount Fee",
-        itemPrice: parseFloat(pricesFromJSON["skin-for-mount"]),
-        price: parseFloat(pricesFromJSON["skin-for-mount"])
-      }
-      newReceipt.push(skinDeerItem)
-    }
 
     //Loops through all the inputs, checks if they're empty, and pushes them in the appropriate array.
     for (let i = 0; i < inputs.length; i++) {
@@ -192,6 +183,14 @@ function App() {
       key: 103
     }
 
+    if (skinDeerForMount ===  'Yes') {
+      const skinDeerItem = {
+        name: "Skin for Mount Fee",
+        itemPrice: parseFloat(pricesFromJSON["skin-for-mount"]),
+        price: parseFloat(pricesFromJSON["skin-for-mount"])
+      }
+      newReceipt.push(skinDeerItem)
+    }  
 
     //Push new item and custInfo objs into arrays and then set the states with those arrays
     custInfoArray.push(euroInfo)
