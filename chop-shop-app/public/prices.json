@@ -1,5 +1,7 @@
-{
+{   
+    "overall-cut": "120",
     "backstrap": "10",
+    "debone-qtrs": "15",
     "roast": "5",
     "steak": "3",
     "fish": "5",
@@ -25,5 +27,6 @@
     "half-smoked-hot-dogs": "6",
     "plain-hot-dogs": "4",
     "jalapeno-hot-dogs": "5",
-    "plain-cheese-dogs": "5"
+    "plain-cheese-dogs": "5",
+    "smoked-jalapeno-bacon-burger": "5"
 }

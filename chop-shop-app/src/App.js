@@ -9,17 +9,10 @@ import SnackSticks from "./components/extras/SnackSticks";
 import PDFDownload from "./components/PDFDownload";
 import { useState } from "react";
 import CurrencyFormat from 'react-currency-format';
-import { ThemeProvider, createTheme, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Button, Typography, Container } from '@mui/material'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Button, Typography, Container } from '@mui/material'
 import { PDFDownloadLink } from '@react-pdf/renderer';
 
 function App() {
-
-  //Create theme for the page
-  const theme = createTheme({
-    palette: {
-      mode: 'light'
-    }
-  })
 
   const epoch = (date) => {
     return Date.parse(date)
@@ -51,6 +44,7 @@ function App() {
   const [burgerType, setBurgerType] = useState('')
   const [backstrapType, setBackstrapType] = useState('')
   const [total, setTotal] = useState(0)
+  const [tbdItems, setTbdItems] = useState([])
 
   //Function that runs when user clicks the button to generate a receipt. Alters customer and receipt states.
   const updateReceipt = () => {
@@ -59,6 +53,15 @@ function App() {
     const inputs = document.getElementsByClassName('MuiInput-input')
     const custInfoArray = []
     const newReceipt = []
+    const newTbdItems = []
+
+    //Add overall cut obj to receipt array
+    const overallCut = {
+      name: 'Overall Cut',
+      itemPrice: parseFloat(pricesFromJSON['overall-cut']),
+      price: parseFloat(pricesFromJSON['overall-cut']),
+    }
+    newReceipt.push(overallCut)
 
     //Loops through all the inputs, checks if they're empty, and pushes them in the appropriate array.
     for (let i = 0; i < inputs.length; i++) {
@@ -70,7 +73,7 @@ function App() {
           key: i
         }
         custInfoArray.push(newCustInfo)
-      } else if (inputs[i].value === "" || isNaN(inputs[i].value)) {
+      } else if (inputs[i].value === "") {
 
       } else if (inputs[i].name === "Burgers") {
         //Special case for burgers; need to pick whether pork plain or beef and change price per item
@@ -108,6 +111,7 @@ function App() {
             break;
         }
       } else if (inputs[i].name === "Tenderloin/Backstrap") {
+        //Special case for backstrap to pick whole  3 chunk or butterfly
         let backstrapObj
         switch (backstrapType) {
           case 'whole':
@@ -141,6 +145,14 @@ function App() {
             newReceipt.push(backstrapObj)
             break;
         }
+      } else if (isNaN(inputs[i].value)) {
+        const newItem = {
+          name: inputs[i].name,
+          value: 'TBD',
+          itemPrice: pricesFromJSON[inputs[i].id],
+          key: i
+        }
+        newTbdItems.push(newItem)
       } else {
         const newItem = {
           name: inputs[i].name,
@@ -170,26 +182,29 @@ function App() {
       key: 103
     }
 
+
+
+    //Push new item and custInfo objs into arrays and then set the states with those arrays
     custInfoArray.push(euroInfo)
     custInfoArray.push(skinForMountInfo)
     custInfoArray.push(buckOrDoeInfo)
     changeReceipt(newReceipt)
     setCustInfo(custInfoArray)
+    setTbdItems(newTbdItems)
 
     //Also calculate total and change total state
     let newTotal = 0
     for (let i = 0; i < newReceipt.length; i++) {
       newTotal = newTotal + newReceipt[i].price
     }
-    setTotal(newTotal.toFixed(2))
-
+    setTotal(newTotal)
     //Shows the receipt
     setShowReceipt(true)
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container className="App" maxWidth="xl" sx={{display: 'flex', flexDirection: 'column'}}>
+    <Container>
+      <Container className="App" maxWidth="xl" sx={{ display: 'flex', flexDirection: 'column' }}>
         <Typography sx={{ margin: 2, alignSelf: 'center' }} variant="h2" >
           The Chop Shop
         </Typography>
@@ -214,7 +229,7 @@ function App() {
           {showReceipt ?
             <Container>
               <Typography variant="h5">Customer Info</Typography>
-              <Box sx={{ border: 2, backgroundColor: '#6F777D', display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+              <Box sx={{ border: 2, borderRadius: 1, backgroundColor: '#6F777D', display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
                 {custInfo.map((item) => (
                   <Typography sx={{ margin: 3, color: 'white' }} key={item.key}><span style={{ fontWeight: 'bold' }}>{item.name}:</span> {item.value} </Typography>
                 ))}
@@ -222,12 +237,12 @@ function App() {
             </Container>
             : null}
           {showReceipt ? <Container>
-            <Typography variant="h5">Itemized Receipt</Typography>
+            <Typography sx={{ marginTop: 2 }} variant="h5">Itemized Receipt</Typography>
             <TableContainer component={Paper} >
-              <Table autoFocus >
+              <Table >
                 <TableHead sx={{ backgroundColor: '#6F777D', border: 2 }}>
                   <TableRow>
-                    <TableCell foc sx={{ color: 'white' }} align='left'>Item</TableCell>
+                    <TableCell sx={{ color: 'white' }} align='left'>Item</TableCell>
                     <TableCell sx={{ color: 'white' }} align="right">Quantity</TableCell>
                     <TableCell sx={{ color: 'white' }} align="right">Price</TableCell>
                     <TableCell sx={{ color: 'white ' }} align='right'>Subtotal</TableCell>
@@ -242,18 +257,26 @@ function App() {
                       <TableCell align="right"><CurrencyFormat fixedDecimalScale={true} decimalScale={2} value={item.price} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
                     </TableRow>
                   ))}
+                  {tbdItems.map((item) => (
+                    <TableRow key={item.key} sx={{ border: 0 }}>
+                      <TableCell component="th" scope="row"> {item.name} </TableCell>
+                      <TableCell align="right">{item.value}</TableCell>
+                      <TableCell align="right"><CurrencyFormat fixedDecimalScale={true} decimalScale={2} value={item.itemPrice} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </TableContainer>
-
             <Box sx={{ margin: 3, display: 'flex', justifyContent: 'flex-end' }}>
-              <Typography variant='h5'>Total: <CurrencyFormat value={total} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Typography>
+              <Typography variant='h5'>Total: <CurrencyFormat decimalScale={2} fixedDecimalScale={true} value={total} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Typography>
             </Box>
-            <PDFDownloadLink key={timestamp} style={{ padding: 6 }} document={<PDFDownload items={receipt} custInfo={custInfo} total={total} />} fileName={custInfo[2].value + '_' + month + '-' + date + '-' + year + '.pdf'}>💾</PDFDownloadLink>
+            <Box sx={{display: 'flex', justifyContent: 'center', marginBottom: 5}}>
+              <PDFDownloadLink key={timestamp} style={{ padding: 6 }} document={<PDFDownload tbd={tbdItems} items={receipt} custInfo={custInfo} total={total} />} fileName={custInfo[2].value + '_' + month + '-' + date + '-' + year + '.pdf'}><Typography>Download</Typography></PDFDownloadLink>
+            </Box>
           </Container> : null}
         </Container>
       </Container>
-    </ThemeProvider>
+    </Container>
   );
 }
 

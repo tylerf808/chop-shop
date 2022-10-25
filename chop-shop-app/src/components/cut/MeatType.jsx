@@ -12,7 +12,7 @@ function MeatType({ changeBurgerType, changeBackstrap }) {
                 <Input className='item-inputs' type='number' id='backstrap' name="Tenderloin/Backstrap"></Input>
                 <RadioGroup>
                     <FormControlLabel sx={{}} onClick={() => changeBackstrap('whole')} value='whole' control={<Radio />} label='Whole'></FormControlLabel>
-                    <FormControlLabel sx={{}} onClick={() => changeBackstrap('3-chunk')} value='3-chunk' control={<Radio />} label='3-Chunk'></FormControlLabel>
+                    <FormControlLabel sx={{}} onClick={() => changeBackstrap('3-chunk')} value='3-chunk' control={<Radio />} label='3 Chunk'></FormControlLabel>
                     <FormControlLabel sx={{}} onClick={() => changeBackstrap('butterfly')} value='butterfly' control={<Radio />} label='Butterfly'></FormControlLabel>
                 </RadioGroup>
             </FormControl>
@@ -29,7 +29,7 @@ function MeatType({ changeBurgerType, changeBackstrap }) {
                 <Input className='item-inputs' type='number' id='fish' name="Fish"></Input>
             </FormControl >
             <FormControl sx={{ margin: 3 }}>
-                <Typography variant='body1'>Minute Steak</Typography>
+                <Typography variant='body1'>Minute Steaks</Typography>
                 <Input className='item-inputs' type='number' id='minute-steak' name="Minute Steak"></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
@@ -37,8 +37,8 @@ function MeatType({ changeBurgerType, changeBackstrap }) {
                 <Input className='item-inputs' id="burger" name="Burgers"></Input>
                 <RadioGroup row id='burgers-extras-radio-buttons-group'>
                     <FormControlLabel onClick={() => changeBurgerType('plain')} value='plain' control={<Radio />} label='Plain' />
-                    <FormControlLabel onClick={() => changeBurgerType('pork')} value='pork' control={<Radio />} label='Add Pork ($3.50/lb)' />
-                    <FormControlLabel onClick={() => changeBurgerType('beef')} value='beef' control={<Radio />} label='Add Beef ($4.50/lb)' />
+                    <FormControlLabel onClick={() => changeBurgerType('pork')} value='pork' control={<Radio />} label='Add Pork' />
+                    <FormControlLabel onClick={() => changeBurgerType('beef')} value='beef' control={<Radio />} label='Add Beef' />
                 </RadioGroup>
             </FormControl>
         </Container>
