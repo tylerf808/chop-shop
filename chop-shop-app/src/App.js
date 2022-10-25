@@ -57,11 +57,21 @@ function App() {
 
     //Add overall cut obj to receipt array
     const overallCut = {
-      name: 'Overall Cut',
-      itemPrice: parseFloat(pricesFromJSON['overall-cut']),
-      price: parseFloat(pricesFromJSON['overall-cut']),
+      name: 'Regular Cut',
+      itemPrice: parseFloat(pricesFromJSON['regular-cut']),
+      price: parseFloat(pricesFromJSON['regular-cut']),
     }
     newReceipt.push(overallCut)
+
+    //If they want to skin add the fee as an item
+    if (skinDeerForMount) {
+      const skinDeerItem = {
+        name: "Skin for Mount Fee",
+        itemPrice: parseFloat(pricesFromJSON["skin-for-mount"]),
+        price: parseFloat(pricesFromJSON["skin-for-mount"])
+      }
+      newReceipt.push(skinDeerItem)
+    }
 
     //Loops through all the inputs, checks if they're empty, and pushes them in the appropriate array.
     for (let i = 0; i < inputs.length; i++) {
@@ -183,7 +193,6 @@ function App() {
     }
 
 
-
     //Push new item and custInfo objs into arrays and then set the states with those arrays
     custInfoArray.push(euroInfo)
     custInfoArray.push(skinForMountInfo)
@@ -270,7 +279,7 @@ function App() {
             <Box sx={{ margin: 3, display: 'flex', justifyContent: 'flex-end' }}>
               <Typography variant='h5'>Total: <CurrencyFormat decimalScale={2} fixedDecimalScale={true} value={total} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Typography>
             </Box>
-            <Box sx={{display: 'flex', justifyContent: 'center', marginBottom: 5}}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
               <PDFDownloadLink key={timestamp} style={{ padding: 6 }} document={<PDFDownload tbd={tbdItems} items={receipt} custInfo={custInfo} total={total} />} fileName={custInfo[2].value + '_' + month + '-' + date + '-' + year + '.pdf'}><Typography>Download</Typography></PDFDownloadLink>
             </Box>
           </Container> : null}

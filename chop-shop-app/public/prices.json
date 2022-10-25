@@ -1,5 +1,6 @@
 {   
-    "overall-cut": "120",
+    "regular-cut": "120",
+    "skin-for-mount": "25",
     "backstrap": "10",
     "debone-qtrs": "15",
     "roast": "5",
