@@ -21,6 +21,10 @@ function DeerInfo({setBuckOrDoe}) {
                 <Input name="Confirmation Number" id='customer-info' type='number'></Input>
             </FormControl>
             <FormControl sx={{ margin: 3 }}>
+                <Typography variant='body1'>DNR ID:</Typography>
+                <Input name="DNR ID" id='customer-info' type='number'></Input>
+            </FormControl>
+            <FormControl sx={{ margin: 3 }}>
                 <Typography variant='body1'>Name</Typography>
                 <Input name="Name" id='customer-info' type='text'></Input>
             </FormControl>
