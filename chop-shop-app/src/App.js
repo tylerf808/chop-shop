@@ -190,7 +190,7 @@ function App() {
         price: parseFloat(pricesFromJSON["skin-for-mount"])
       }
       newReceipt.push(skinDeerItem)
-    }  
+    }
 
     //Push new item and custInfo objs into arrays and then set the states with those arrays
     custInfoArray.push(euroInfo)
@@ -279,7 +279,7 @@ function App() {
               <Typography variant='h5'>Total: <CurrencyFormat decimalScale={2} fixedDecimalScale={true} value={total} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Typography>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
-              <PDFDownloadLink key={timestamp} style={{ padding: 6 }} document={<PDFDownload tbd={tbdItems} items={receipt} custInfo={custInfo} total={total} />} fileName={custInfo[2].value + '_' + month + '-' + date + '-' + year + '.pdf'}><Typography>Download</Typography></PDFDownloadLink>
+              <PDFDownloadLink key={timestamp} style={{ padding: 6 }} document={<PDFDownload tbd={tbdItems} items={receipt} custInfo={custInfo} total={total} />} fileName={custInfo[0].value + '_' + custInfo[3].value + '.pdf'}><Typography>Download</Typography></PDFDownloadLink>
             </Box>
           </Container> : null}
         </Container>
